@@ -7,6 +7,9 @@ struct map
     int h;
     int player;
     int finish;
+    int key;
+    char gate;
+    char haskey;
     char *data;
 };
 

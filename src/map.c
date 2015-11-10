@@ -13,6 +13,7 @@ struct map map_init(char *name)
     struct map map;
     map.player = -1;
     map.finish = -1;
+    map.key = 1;
     size_t n = 0;
     getline(&lineptr, &n, file);
     lineptr[strlen(lineptr) - 1] = 0;
@@ -29,8 +30,16 @@ struct map map_init(char *name)
             map.player = i;
         if (map.data[i] == 'F')
             map.finish = i;
+        if (map.data[i] == 'K')
+        {
+            map.key = i;
+            map.haskey = 0;
+        }
+        if (map.data[i] == 'G')
+            map.gate = 1;
     }
     if (map.player == -1 || map.finish == -1 ||
+            map.gate < map.haskey ||
             strlen(map.data) < map.w * map.h)
     {
         printf("Incorrect map\n");

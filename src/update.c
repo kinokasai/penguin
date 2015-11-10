@@ -17,7 +17,11 @@ int update(struct map *map)
         new_pos = map->player + 1;
     if (new_pos == map->finish)
         return 0;
-    if ((map->data[new_pos] == '1' || map->data[new_pos] == 'F' )&&
+    else if (map->data[new_pos] == 'K')
+        map->haskey = 1;
+    if ((map->data[new_pos] == '1' || map->data[new_pos] == 'F' ||
+                map->data[new_pos] == 'K' ||
+                (map->data[new_pos] == 'G' && map->haskey)) &&
             (new_pos > 0 && new_pos < map->w * map->h))
         map->player = new_pos;
     map->data[map->player] = 'P';
