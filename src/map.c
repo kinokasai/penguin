@@ -30,7 +30,8 @@ struct map map_init(char *name)
         if (map.data[i] == 'F')
             map.finish = i;
     }
-    if (map.player == -1 || map.finish == -1)
+    if (map.player == -1 || map.finish == -1 ||
+            strlen(map.data) < map.w * map.h)
     {
         printf("Incorrect map\n");
         exit(1);
